@@ -1,0 +1,22 @@
+apply plugin: 'kotlin-multiplatform'
+
+kotlin {
+    jvm()
+    js {
+        browser {}
+    }
+
+    sourceSets {
+        commonMain {
+            dependencies {
+                api project(':domain')
+                implementation sharedLibraries.ktorClientCore
+                implementation sharedLibraries.ktorClientJson
+            }
+        }
+        jvmMain {}
+        jvmTest {}
+        jsMain {}
+        jsTest {}
+    }
+}

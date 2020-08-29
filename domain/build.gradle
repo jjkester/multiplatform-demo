@@ -1,0 +1,22 @@
+apply plugin: 'kotlin-multiplatform'
+apply plugin: 'kotlinx-serialization'
+
+kotlin {
+    jvm()
+    js {
+        browser {}
+    }
+
+    sourceSets {
+        commonMain {
+            dependencies {
+                implementation sharedLibraries.kotlinxSerialization
+            }
+        }
+        commonTest {}
+        jvmMain {}
+        jvmTest {}
+        jsMain {}
+        jsTest {}
+    }
+}

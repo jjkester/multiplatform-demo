@@ -1,0 +1,26 @@
+apply plugin: 'kotlin-multiplatform'
+apply plugin: 'kotlinx-serialization'
+
+kotlin {
+    jvm()
+
+    sourceSets {
+        commonMain {
+            dependencies {
+                implementation project(':domain')
+                implementation sharedLibraries.kotlinxSerialization
+                implementation sharedLibraries.ktorClientJson
+                implementation sharedLibraries.ktorClientSerialization
+            }
+        }
+        jvmMain {
+            dependencies {
+                implementation sharedLibraries.ktorSerialization
+                implementation sharedLibraries.ktorServerNetty
+                implementation sharedLibraries.ktorClientOkHttp
+                implementation "ch.qos.logback:logback-classic:1.2.3"
+            }
+        }
+        jvmTest {}
+    }
+}

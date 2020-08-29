@@ -1,0 +1,9 @@
+rootProject.name = 'multiplatform-demo'
+include 'domain'
+include 'client'
+include 'server'
+include 'app'
+include 'webapp'
+include 'cli'
+include 'webapp'
+

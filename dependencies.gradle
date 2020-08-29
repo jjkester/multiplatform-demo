@@ -1,0 +1,17 @@
+ext {
+    sharedVersions = [
+            'ktor': '1.4.0',
+    ]
+
+    sharedLibraries = [
+            'kotlinxSerialization'   : 'org.jetbrains.kotlinx:kotlinx-serialization-core:1.0.0-RC',
+            'ktorServerCore'         : "io.ktor:ktor-server-core:${sharedVersions.ktor}",
+            'ktorServerNetty'        : "io.ktor:ktor-server-netty:${sharedVersions.ktor}",
+            'ktorSerialization'               : "io.ktor:ktor-serialization:${sharedVersions.ktor}",
+            'ktorClientCore'         : "io.ktor:ktor-client-core:${sharedVersions.ktor}",
+            'ktorClientOkHttp'       : "io.ktor:ktor-client-okhttp:${sharedVersions.ktor}",
+            'ktorClientJs'           : "io.ktor:ktor-client-js:${sharedVersions.ktor}",
+            'ktorClientJson'         : "io.ktor:ktor-client-json:${sharedVersions.ktor}",
+            'ktorClientSerialization': "io.ktor:ktor-client-serialization:${sharedVersions.ktor}",
+    ]
+}

@@ -1,0 +1,35 @@
+plugins {
+    id 'org.jetbrains.kotlin.js'
+}
+
+dependencies {
+    implementation project(":client")
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-js"
+    implementation sharedLibraries.ktorClientCore
+    implementation sharedLibraries.ktorClientJson
+    implementation sharedLibraries.ktorClientSerialization
+    testImplementation "org.jetbrains.kotlin:kotlin-test-js"
+}
+
+kotlin {
+    js {
+        browser {
+            webpackTask {
+                cssSupport.enabled = true
+            }
+
+            runTask {
+                cssSupport.enabled = true
+            }
+
+            testTask {
+                useKarma {
+                    useChromeHeadless()
+                    webpackConfig.cssSupport.enabled = true
+                }
+            }
+        }
+        binaries.executable()
+    }
+}

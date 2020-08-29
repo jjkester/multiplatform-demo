@@ -1,0 +1,15 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+dependencies {
+    implementation project(':client')
+    implementation sharedLibraries.ktorClientOkHttp
+    implementation sharedLibraries.ktorClientJson
+    implementation sharedLibraries.ktorClientSerialization
+}
+
+application {
+    mainClass = 'nl.jjkester.multiplatform.cli.Main'
+}

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Issue Browser</title>
+    <script src="webapp.js"></script>
+    <style type="text/css">
+        * {
+            box-sizing: border-box;
+        }
+        html, body {
+            font-family: "Arial", sans-serif;
+            background: #f8f8f8;
+            font-size: 14px;
+        }
+        h1, h2, h3 {
+            color: #02315a;
+        }
+        .container {
+            max-width: 800px;
+            margin: 2em auto;
+            padding: 1em 2em;
+            background: white;
+            box-shadow: 0 2em 4em -2em rgba(0, 0, 0, .2);
+        }
+        #form .form-box {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+        #form .fake-input {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            height: 3em;
+            padding: 0 1em;
+            border: 1px solid #02315a;
+        }
+        #form legend {
+            font-weight: bold;
+            color: #02315a;
+        }
+        #form input {
+            background: transparent;
+            color: #0094d8;
+            font-size: 1em;
+            padding: .5em;
+            margin: -.5em 0;
+            border: 1px solid transparent;
+        }
+        #form input::placeholder {
+            color: #555;
+        }
+        #form input:focus {
+            outline: none;
+            border-bottom: 1px solid #02315a;
+        }
+        #form button {
+            position: relative;
+            padding: 1em 2em;
+            height: 3em;
+            background: #cce829;
+            text-transform: uppercase;
+            color: #02315a;
+            font-weight: bold;
+            border: none;
+        }
+        #form button::after {
+            content: ' ';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: -3em;
+            height: 0;
+            width: 0;
+            border: 3em solid;
+            border-color: #cce829 transparent transparent transparent;
+        }
+        #form button:focus {
+            outline: none;
+        }
+        ul#issue-list {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+        ul#issue-list li.issue {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            padding: 2em 0;
+            border-bottom: 1px solid #ccc;
+        }
+        ul#issue-list li.issue:last-child {
+            border-bottom: none;
+        }
+        .issue-number {
+            order: 1;
+            flex-grow: 0;
+            flex-shrink: 0;
+            display: block;
+            font-weight: bold;
+            margin-right: 1em;
+        }
+        .issue-number::before {
+            content: '#';
+        }
+        .issue-status {
+            order: 0;
+            flex-grow: 0;
+            flex-shrink: 0;
+            display: block;
+            width: 5em;
+            text-align: center;
+            font-weight: bold;
+            padding: .5em 1em;
+            margin-right: 1em;
+            color: white;
+            border-radius: .5em;
+        }
+        .issue-status.issue-status-open {
+            background-color: green;
+        }
+        .issue-status.issue-status-closed {
+            background-color: red;
+        }
+        .issue-title {
+            order: 3;
+            flex-grow: 1;
+            font-size: 1em;
+            margin: 0;
+            font-weight: normal;
+        }
+        .issue-link {
+            order: 4;
+            margin-left: 1em;
+        }
+        .issue-link a {
+            color: #0094d8;
+            text-decoration: none;
+        }
+        .issue-link a:hover {
+            text-decoration: underline;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>GitHub Issue Browser</h1>
+    <p>Enter the owner and repository names below to see the issues (max 100):</p>
+
+    <form id="form">
+        <div class="form-box">
+            <div class="fake-input">
+                <div>https://github.com/</div>
+                <input type="text" id="input-owner" name="owner" placeholder="owner">
+                <div>/</div>
+                <input type="text" id="input-repo" name="repo" placeholder="repository">
+            </div>
+            <button type="submit" id="submit">Find issues</button>
+        </div>
+    </form>
+</div>
+<div class="container">
+    <div id="loader" class="dynamic">
+        <p>Loading...</p>
+    </div>
+    <div id="no-results" class="dynamic">
+        <h2>No results</h2>
+        <p>Enter a repository above to see the issues.</p>
+    </div>
+    <div id="results" class="dynamic">
+        <ul id="issue-list"></ul>
+    </div>
+    <div id="error" class="dynamic">
+        <h2>Something went wrong</h2>
+        <p id="error-message"></p>
+    </div>
+</div>
+
+</body>
+</html>
