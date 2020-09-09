@@ -1,17 +1,24 @@
 ext {
     sharedVersions = [
-            'ktor': '1.4.0',
+            'kotlin': '1.4.0',
+            'ktor'  : '1.4.0',
+            'mockK' : '1.10.0',
     ]
 
     sharedLibraries = [
-            'kotlinxSerialization'   : 'org.jetbrains.kotlinx:kotlinx-serialization-core:1.0.0-RC',
-            'ktorServerCore'         : "io.ktor:ktor-server-core:${sharedVersions.ktor}",
-            'ktorServerNetty'        : "io.ktor:ktor-server-netty:${sharedVersions.ktor}",
-            'ktorSerialization'               : "io.ktor:ktor-serialization:${sharedVersions.ktor}",
-            'ktorClientCore'         : "io.ktor:ktor-client-core:${sharedVersions.ktor}",
-            'ktorClientOkHttp'       : "io.ktor:ktor-client-okhttp:${sharedVersions.ktor}",
-            'ktorClientJs'           : "io.ktor:ktor-client-js:${sharedVersions.ktor}",
-            'ktorClientJson'         : "io.ktor:ktor-client-json:${sharedVersions.ktor}",
-            'ktorClientSerialization': "io.ktor:ktor-client-serialization:${sharedVersions.ktor}",
+            'kotlinxSerialization'       : 'org.jetbrains.kotlinx:kotlinx-serialization-core:1.0.0-RC',
+            'ktorServerCore'             : "io.ktor:ktor-server-core:${sharedVersions.ktor}",
+            'ktorServerNetty'            : "io.ktor:ktor-server-netty:${sharedVersions.ktor}",
+            'ktorSerialization'          : "io.ktor:ktor-serialization:${sharedVersions.ktor}",
+            'ktorClientCore'             : "io.ktor:ktor-client-core:${sharedVersions.ktor}",
+            'ktorClientOkHttp'           : "io.ktor:ktor-client-okhttp:${sharedVersions.ktor}",
+            'ktorClientJs'               : "io.ktor:ktor-client-js:${sharedVersions.ktor}",
+            'ktorClientJson'             : "io.ktor:ktor-client-json:${sharedVersions.ktor}",
+            'ktorClientSerialization'    : "io.ktor:ktor-client-serialization:${sharedVersions.ktor}",
+            'kotlinTestCommon'           : "org.jetbrains.kotlin:kotlin-test-common:${sharedVersions.kotlin}",
+            'kotlinTestAnnotationsCommon': "org.jetbrains.kotlin:kotlin-test-annotations-common:${sharedVersions.kotlin}",
+            'kotlinTestJUnit'            : "org.jetbrains.kotlin:kotlin-test-junit:${sharedVersions.kotlin}",
+            'kotlinTestJs'               : "org.jetbrains.kotlin:kotlin-test-js:${sharedVersions.kotlin}",
+            'mockKCommon'                : "io.mockk:mockk-common:${sharedVersions.mockK}",
     ]
 }

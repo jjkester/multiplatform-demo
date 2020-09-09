@@ -13,10 +13,24 @@ kotlin {
                 implementation sharedLibraries.kotlinxSerialization
             }
         }
-        commonTest {}
+        commonTest {
+            dependencies {
+                implementation sharedLibraries.kotlinTestCommon
+                implementation sharedLibraries.kotlinTestAnnotationsCommon
+                implementation sharedLibraries.mockKCommon
+            }
+        }
         jvmMain {}
-        jvmTest {}
+        jvmTest {
+            dependencies {
+                implementation sharedLibraries.kotlinTestJUnit
+            }
+        }
         jsMain {}
-        jsTest {}
+        jsTest {
+            dependencies {
+                implementation sharedLibraries.kotlinTestJs
+            }
+        }
     }
 }

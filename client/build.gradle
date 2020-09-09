@@ -14,6 +14,7 @@ kotlin {
                 implementation sharedLibraries.ktorClientJson
             }
         }
+        commonTest {}
         jvmMain {}
         jvmTest {}
         jsMain {}
