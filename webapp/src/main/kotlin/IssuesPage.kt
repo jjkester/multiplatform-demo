@@ -35,17 +35,23 @@ class IssuesPage(private val presenter: IssuesContract.Presenter) : IssuesContra
             }
             is IssuesContract.ViewState.Results -> {
                 loader.hide()
-                results.show()
-                issueList.clear()
-                state.issues.forEach { issue ->
-                    val row = IssueTemplate().run {
-                        bind(issue)
-                        get()
-                    }
-                    issueList.appendChild(row)
-                }
-                noResults.hide()
                 error.hide()
+
+                if (state.issues.isEmpty()) {
+                    noResults.show()
+                    results.hide()
+                } else {
+                    results.show()
+                    issueList.clear()
+                    state.issues.forEach { issue ->
+                        val row = IssueTemplate().run {
+                            bind(issue)
+                            get()
+                        }
+                        issueList.appendChild(row)
+                    }
+                    noResults.hide()
+                }
             }
         }
     }

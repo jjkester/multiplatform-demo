@@ -1,5 +1,7 @@
 package nl.jjkester.multiplatform.server.github
 
+import io.ktor.client.features.*
+import io.ktor.http.*
 import nl.jjkester.multiplatform.domain.Issue
 import nl.jjkester.multiplatform.domain.Repository
 import nl.jjkester.multiplatform.server.github.model.GitHubIssue
@@ -27,6 +29,10 @@ internal class GitHubService(private val client: GitHubClient) {
             log.debug("Retrieved issues: {}", result)
             return result
         } catch (ex: Exception) {
+            if (ex is ClientRequestException && ex.response.status == HttpStatusCode.NotFound) {
+                return emptyList()
+            }
+
             log.error("Error retrieving issues: {}", ex.message)
             throw ex
         }
