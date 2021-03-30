@@ -1,12 +1,12 @@
 ext {
     sharedVersions = [
-            'kotlin': '1.4.0',
-            'ktor'  : '1.4.0',
-            'mockK' : '1.10.0',
+            'kotlin': '1.4.30',
+            'ktor'  : '1.5.2',
+            'mockK' : '1.11.0',
     ]
 
     sharedLibraries = [
-            'kotlinxSerialization'       : 'org.jetbrains.kotlinx:kotlinx-serialization-core:1.0.0-RC',
+            'kotlinxSerialization'       : 'org.jetbrains.kotlinx:kotlinx-serialization-core:1.1.0',
             'ktorServerCore'             : "io.ktor:ktor-server-core:${sharedVersions.ktor}",
             'ktorServerNetty'            : "io.ktor:ktor-server-netty:${sharedVersions.ktor}",
             'ktorSerialization'          : "io.ktor:ktor-serialization:${sharedVersions.ktor}",
