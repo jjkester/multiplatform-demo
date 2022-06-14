@@ -21,20 +21,15 @@ import java.util.stream.Collectors;
 public class Main {
     public static void main(final String[] args) {
         // Use Ktor HTTP client as resource
-        try (final HttpClient http = HttpClientKt.HttpClient(OkHttp.INSTANCE, okHttpConfig -> {
-            okHttpConfig.install(ContentNegotiation.Plugin, (Configuration contentNegotiationConfig) -> {
-                JsonSupportKt.json(contentNegotiationConfig, JsonSupportKt.getDefaultJson(), ContentType.Application.INSTANCE.getJson());
-                return Unit.INSTANCE;
-            });
-            return Unit.INSTANCE;
-        })) {
+        try (final HttpClient http = createHttpClient()) {
             // Set up client
             final ClientConfig config = new ClientConfig("localhost", 8080);
             final Client client = new Client(http, config);
 
             // Get arguments
             if (args.length != 2) {
-                throw new IllegalArgumentException("Expected exactly 2 arguments");
+                System.err.println("Usage: <user> <repository>");
+                System.exit(-1);
             }
             final Repository repository = new Repository(args[0], args[1]);
 
@@ -45,10 +40,21 @@ public class Main {
             final StringBuilder out = new StringBuilder();
             out.append(String.format("Found %d issues for repository %s/%s:%n", issues.size(), repository.getOwner(), repository.getName()));
             out.append(formatIssuesForPrinting(issues));
-            System.out.print(out.toString());
-        } catch (InterruptedException e) {
-            // No action.
+            System.out.print(out);
+        } catch (Exception e) {
+            System.err.println("Issues could not be retrieved: " + e.getMessage());
         }
+    }
+
+    private static HttpClient createHttpClient() {
+        return HttpClientKt.HttpClient(OkHttp.INSTANCE, okHttpConfig -> {
+            okHttpConfig.setExpectSuccess(true);
+            okHttpConfig.install(ContentNegotiation.Plugin, (Configuration contentNegotiationConfig) -> {
+                JsonSupportKt.json(contentNegotiationConfig, JsonSupportKt.getDefaultJson(), ContentType.Application.INSTANCE.getJson());
+                return Unit.INSTANCE;
+            });
+            return Unit.INSTANCE;
+        });
     }
 
     public static String formatIssuesForPrinting(final List<Issue> issues) {

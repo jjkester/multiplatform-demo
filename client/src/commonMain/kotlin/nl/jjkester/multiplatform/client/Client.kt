@@ -12,10 +12,14 @@ class Client(private val http: HttpClient, private val config: ClientConfig) {
     suspend fun getIssues(repository: Repository): List<Issue> {
         val urlString = "http://${config.host}:${config.port}/"
 
-        return http.post(urlString) {
+        val response = http.post(urlString) {
             contentType(ContentType.Application.Json)
             setBody(repository)
             accept(ContentType.Application.Json)
-        }.body()
+        }
+
+        return response.takeIf { it.status.isSuccess() }?.body() ?: throw ClientException
     }
 }
+
+object ClientException : Exception("Unable to fetch results")

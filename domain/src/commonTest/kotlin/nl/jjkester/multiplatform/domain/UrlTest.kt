@@ -8,6 +8,6 @@ class UrlTest {
     @Test
     fun testUrlConstructor() {
         val url = Url("https://kotlinlang.org")
-        assertEquals("https://kotlinlang.org", url.value)
+        assertEquals("https://kotlinlang.org", url.value.trimEnd('/'))
     }
 }

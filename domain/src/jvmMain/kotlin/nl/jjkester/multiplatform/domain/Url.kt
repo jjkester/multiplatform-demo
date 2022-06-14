@@ -22,7 +22,6 @@ actual data class Url(val platformValue: URL) {
      *
      * @param value String representation of the [URL].
      */
-    @Suppress("ConvertSecondaryConstructorToPrimary")
     actual constructor(value: String) : this(URL(value))
 }
 

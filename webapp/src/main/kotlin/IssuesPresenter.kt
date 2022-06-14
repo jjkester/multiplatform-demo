@@ -1,4 +1,3 @@
-import io.ktor.client.plugins.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -24,7 +23,9 @@ class IssuesPresenter(private val client: Client) : IssuesContract.Presenter, Co
             try {
                 val issues = client.getIssues(Repository(owner, repo))
                 view.set(IssuesContract.ViewState.Results(issues))
-            } catch (ex: ResponseException) {
+            } catch (ex: Exception) {
+                view.set(IssuesContract.ViewState.Error(ex.message))
+            } catch (ex: dynamic) {
                 view.set(IssuesContract.ViewState.Error(ex.toString()))
             }
         }
