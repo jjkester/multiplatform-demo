@@ -15,11 +15,7 @@ dependencies {
 kotlin {
     js {
         browser {
-            webpackTask {
-                cssSupport.enabled = true
-            }
-
-            runTask {
+            commonWebpackConfig {
                 cssSupport.enabled = true
             }
 

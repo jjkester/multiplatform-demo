@@ -13,3 +13,13 @@ dependencies {
 application {
     mainClass = 'nl.jjkester.multiplatform.cli.Main'
 }
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'nl.jjkester.multiplatform.cli.Main'
+    }
+    from {
+        exclude '**/module-info.class'
+        configurations.runtimeClasspath.findAll { it.name.endsWith('jar') }.collect { zipTree(it) }
+    }
+}

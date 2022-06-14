@@ -10,10 +10,8 @@ import kotlinx.coroutines.BuildersKt;
 import nl.jjkester.multiplatform.client.Client;
 import nl.jjkester.multiplatform.client.ClientConfig;
 import nl.jjkester.multiplatform.domain.Issue;
-import nl.jjkester.multiplatform.domain.IssueStatus;
 import nl.jjkester.multiplatform.domain.Repository;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 

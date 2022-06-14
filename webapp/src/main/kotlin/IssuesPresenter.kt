@@ -2,7 +2,6 @@ import io.ktor.client.features.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.promise
 import nl.jjkester.multiplatform.client.Client
 import nl.jjkester.multiplatform.domain.Repository
 import kotlin.coroutines.CoroutineContext

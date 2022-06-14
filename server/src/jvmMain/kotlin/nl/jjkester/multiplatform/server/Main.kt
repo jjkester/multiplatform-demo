@@ -18,7 +18,7 @@ import nl.jjkester.multiplatform.domain.Repository
 import nl.jjkester.multiplatform.server.github.GitHubClient
 import nl.jjkester.multiplatform.server.github.GitHubService
 
-fun main(args: Array<String>) {
+fun main() {
     val client = HttpClient(OkHttp) {
         install(JsonFeature) {
             serializer = KotlinxSerializer(Json(DefaultJson) {
