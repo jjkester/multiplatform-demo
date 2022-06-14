@@ -1,4 +1,4 @@
-import io.ktor.client.features.*
+import io.ktor.client.plugins.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

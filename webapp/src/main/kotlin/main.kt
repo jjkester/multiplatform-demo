@@ -1,7 +1,7 @@
 import io.ktor.client.*
 import io.ktor.client.engine.js.*
-import io.ktor.client.features.json.*
-import io.ktor.client.features.json.serializer.*
+import io.ktor.client.plugins.contentnegotiation.*
+import io.ktor.serialization.kotlinx.json.*
 import kotlinx.browser.document
 import nl.jjkester.multiplatform.client.Client
 import nl.jjkester.multiplatform.client.ClientConfig
@@ -10,8 +10,8 @@ import org.w3c.dom.HTMLInputElement
 
 fun main() {
     val http = HttpClient(Js) {
-        install(JsonFeature) {
-            serializer = KotlinxSerializer()
+        install(ContentNegotiation) {
+            json()
         }
     }
     val client = Client(http, ClientConfig("localhost", 8080))

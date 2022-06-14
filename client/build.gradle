@@ -11,7 +11,6 @@ kotlin {
             dependencies {
                 api project(':domain')
                 implementation sharedLibraries.ktorClientCore
-                implementation sharedLibraries.ktorClientJson
             }
         }
         commonTest {}

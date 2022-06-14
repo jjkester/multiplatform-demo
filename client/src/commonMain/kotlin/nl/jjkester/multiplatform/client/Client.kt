@@ -1,6 +1,7 @@
 package nl.jjkester.multiplatform.client
 
 import io.ktor.client.*
+import io.ktor.client.call.*
 import io.ktor.client.request.*
 import io.ktor.http.*
 import nl.jjkester.multiplatform.domain.Issue
@@ -12,9 +13,9 @@ class Client(private val http: HttpClient, private val config: ClientConfig) {
         val urlString = "http://${config.host}:${config.port}/"
 
         return http.post(urlString) {
-            body = repository
             contentType(ContentType.Application.Json)
+            setBody(repository)
             accept(ContentType.Application.Json)
-        }
+        }.body()
     }
 }

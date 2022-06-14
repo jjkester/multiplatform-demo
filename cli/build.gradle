@@ -5,9 +5,10 @@ plugins {
 
 dependencies {
     implementation project(':client')
+    implementation sharedLibraries.ktorClientCore
     implementation sharedLibraries.ktorClientOkHttp
-    implementation sharedLibraries.ktorClientJson
-    implementation sharedLibraries.ktorClientSerialization
+    implementation sharedLibraries.ktorClientContentNegotiation
+    implementation sharedLibraries.ktorSerialization
 }
 
 application {

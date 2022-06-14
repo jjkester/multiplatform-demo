@@ -9,13 +9,15 @@ kotlin {
             dependencies {
                 implementation project(':domain')
                 implementation sharedLibraries.kotlinxSerialization
-                implementation sharedLibraries.ktorClientJson
-                implementation sharedLibraries.ktorClientSerialization
+                implementation sharedLibraries.ktorServerCore
+                implementation sharedLibraries.ktorClientContentNegotiation
+                implementation sharedLibraries.ktorSerialization
             }
         }
         jvmMain {
             dependencies {
-                implementation sharedLibraries.ktorSerialization
+                implementation sharedLibraries.ktorServerContentNegotiation
+                implementation sharedLibraries.ktorServerDefaultHeaders
                 implementation sharedLibraries.ktorServerNetty
                 implementation sharedLibraries.ktorClientOkHttp
                 implementation "ch.qos.logback:logback-classic:1.2.3"

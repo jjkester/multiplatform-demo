@@ -1,6 +1,7 @@
 package nl.jjkester.multiplatform.server.github
 
 import io.ktor.client.*
+import io.ktor.client.call.*
 import io.ktor.client.request.*
 import io.ktor.http.*
 import nl.jjkester.multiplatform.server.github.model.GitHubIssue
@@ -32,7 +33,7 @@ internal class GitHubClient(private val http: HttpClient) {
             parameter("state", "all")
             parameter("per_page", 100)
             accept(ContentType.Application.Json)
-        }
+        }.body()
 
         log.debug("Fetched issues: {}", result)
 

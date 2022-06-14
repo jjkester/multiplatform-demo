@@ -1,6 +1,6 @@
 package nl.jjkester.multiplatform.server.github
 
-import io.ktor.client.features.*
+import io.ktor.client.plugins.*
 import io.ktor.http.*
 import nl.jjkester.multiplatform.domain.Issue
 import nl.jjkester.multiplatform.domain.Repository

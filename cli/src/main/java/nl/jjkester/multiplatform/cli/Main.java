@@ -3,7 +3,10 @@ package nl.jjkester.multiplatform.cli;
 import io.ktor.client.HttpClient;
 import io.ktor.client.HttpClientKt;
 import io.ktor.client.engine.okhttp.OkHttp;
-import io.ktor.client.features.json.JsonFeature;
+import io.ktor.client.plugins.contentnegotiation.ContentNegotiation;
+import io.ktor.http.ContentType;
+import io.ktor.serialization.Configuration;
+import io.ktor.serialization.kotlinx.json.JsonSupportKt;
 import kotlin.Unit;
 import kotlin.coroutines.EmptyCoroutineContext;
 import kotlinx.coroutines.BuildersKt;
@@ -19,7 +22,10 @@ public class Main {
     public static void main(final String[] args) {
         // Use Ktor HTTP client as resource
         try (final HttpClient http = HttpClientKt.HttpClient(OkHttp.INSTANCE, okHttpConfig -> {
-            okHttpConfig.install(JsonFeature.Feature, jsonConfig -> Unit.INSTANCE);
+            okHttpConfig.install(ContentNegotiation.Plugin, (Configuration contentNegotiationConfig) -> {
+                JsonSupportKt.json(contentNegotiationConfig, JsonSupportKt.getDefaultJson(), ContentType.Application.INSTANCE.getJson());
+                return Unit.INSTANCE;
+            });
             return Unit.INSTANCE;
         })) {
             // Set up client

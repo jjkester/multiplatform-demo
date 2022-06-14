@@ -7,8 +7,8 @@ dependencies {
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-js"
     implementation sharedLibraries.ktorClientCore
-    implementation sharedLibraries.ktorClientJson
-    implementation sharedLibraries.ktorClientSerialization
+    implementation sharedLibraries.ktorClientContentNegotiation
+    implementation sharedLibraries.ktorSerialization
     testImplementation "org.jetbrains.kotlin:kotlin-test-js"
 }
 
