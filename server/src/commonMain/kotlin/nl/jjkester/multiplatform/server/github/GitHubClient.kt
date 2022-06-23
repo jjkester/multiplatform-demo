@@ -1,11 +1,11 @@
 package nl.jjkester.multiplatform.server.github
 
+import io.github.aakira.napier.Napier
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.request.*
 import io.ktor.http.*
 import nl.jjkester.multiplatform.server.github.model.GitHubIssue
-import org.slf4j.LoggerFactory
 
 /**
  * Client for the GitHub API.
@@ -13,8 +13,6 @@ import org.slf4j.LoggerFactory
  * @param http Http client to use.
  */
 internal class GitHubClient(private val http: HttpClient) {
-
-    private val log = LoggerFactory.getLogger(GitHubClient::class.java)
 
     /**
      * Retrieves the issues for the given repository.
@@ -26,7 +24,7 @@ internal class GitHubClient(private val http: HttpClient) {
     suspend fun getRepositoryIssues(owner: String, repository: String): List<GitHubIssue> {
         val urlString = "https://api.github.com/repos/${owner.encodeURLPath()}/${repository.encodeURLPath()}/issues"
 
-        log.debug("Fetching issues: {}", urlString)
+        Napier.d("Fetching issues: $urlString")
 
         val result: List<GitHubIssue> = http.get(urlString) {
             header("Accept", "application/vnd.github.v3+json")
@@ -35,7 +33,7 @@ internal class GitHubClient(private val http: HttpClient) {
             accept(ContentType.Application.Json)
         }.body()
 
-        log.debug("Fetched issues: {}", result)
+        Napier.d("Fetched issues: ${result.count()}")
 
         return result
     }

@@ -4,11 +4,14 @@ plugins {
 }
 
 dependencies {
+    implementation libs.kotlin.stdlib
+    implementation libs.kotlinx.coroutines
+
     implementation project(':client')
-    implementation sharedLibraries.ktorClientCore
-    implementation sharedLibraries.ktorClientOkHttp
-    implementation sharedLibraries.ktorClientContentNegotiation
-    implementation sharedLibraries.ktorSerialization
+
+    implementation libs.ktor.client.okhttp
+    implementation libs.ktor.client.contentNegotiation
+    implementation libs.ktor.serialization.kotlinx.json
 }
 
 application {

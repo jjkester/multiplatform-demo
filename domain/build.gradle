@@ -10,27 +10,23 @@ kotlin {
     sourceSets {
         commonMain {
             dependencies {
-                implementation sharedLibraries.kotlinxSerialization
+                implementation libs.kotlin.stdlib
+                implementation libs.kotlinx.coroutines
+                implementation libs.kotlinx.serialization
             }
         }
         commonTest {
             dependencies {
-                implementation sharedLibraries.kotlinTestCommon
-                implementation sharedLibraries.kotlinTestAnnotationsCommon
-                implementation sharedLibraries.mockKCommon
+                implementation libs.test.kotlin
+                implementation libs.test.assertk
+                implementation libs.test.mockk
+
+                implementation libs.kotlinx.serialization.json
             }
         }
         jvmMain {}
-        jvmTest {
-            dependencies {
-                implementation sharedLibraries.kotlinTestJUnit
-            }
-        }
+        jvmTest {}
         jsMain {}
-        jsTest {
-            dependencies {
-                implementation sharedLibraries.kotlinTestJs
-            }
-        }
+        jsTest {}
     }
 }

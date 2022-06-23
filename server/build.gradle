@@ -7,20 +7,28 @@ kotlin {
     sourceSets {
         commonMain {
             dependencies {
+                implementation libs.kotlin.stdlib
+                implementation libs.kotlinx.coroutines
+                implementation libs.kotlinx.serialization
+
                 implementation project(':domain')
-                implementation sharedLibraries.kotlinxSerialization
-                implementation sharedLibraries.ktorServerCore
-                implementation sharedLibraries.ktorClientContentNegotiation
-                implementation sharedLibraries.ktorSerialization
+
+                implementation libs.ktor.server.core
+                implementation libs.ktor.server.contentNegotiation
+                implementation libs.ktor.server.defaultHeaders
+                implementation libs.ktor.client.core
+                implementation libs.ktor.client.contentNegotiation
+                implementation libs.ktor.serialization.kotlinx.json
+
+                implementation 'io.github.aakira:napier:2.6.1'
             }
         }
         jvmMain {
             dependencies {
-                implementation sharedLibraries.ktorServerContentNegotiation
-                implementation sharedLibraries.ktorServerDefaultHeaders
-                implementation sharedLibraries.ktorServerNetty
-                implementation sharedLibraries.ktorClientOkHttp
-                implementation "ch.qos.logback:logback-classic:1.2.3"
+                implementation libs.ktor.server.netty
+                implementation libs.ktor.client.okhttp
+
+                implementation 'io.github.aakira:napier-jvm:2.6.1'
             }
         }
         jvmTest {}

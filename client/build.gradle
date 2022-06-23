@@ -10,7 +10,8 @@ kotlin {
         commonMain {
             dependencies {
                 api project(':domain')
-                implementation sharedLibraries.ktorClientCore
+
+                implementation libs.ktor.client.core
             }
         }
         commonTest {}

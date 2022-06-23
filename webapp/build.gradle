@@ -3,13 +3,16 @@ plugins {
 }
 
 dependencies {
+    implementation libs.kotlin.stdlib
+    implementation libs.kotlinx.coroutines
+
     implementation project(":client")
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core'
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-js"
-    implementation sharedLibraries.ktorClientCore
-    implementation sharedLibraries.ktorClientContentNegotiation
-    implementation sharedLibraries.ktorSerialization
-    testImplementation "org.jetbrains.kotlin:kotlin-test-js"
+
+    implementation libs.ktor.client.core
+    implementation libs.ktor.client.contentNegotiation
+    implementation libs.ktor.serialization.kotlinx.json
+
+    testImplementation libs.test.kotlin
 }
 
 kotlin {

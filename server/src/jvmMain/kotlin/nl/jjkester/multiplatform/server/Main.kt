@@ -1,5 +1,8 @@
 package nl.jjkester.multiplatform.server
 
+import io.github.aakira.napier.Antilog
+import io.github.aakira.napier.DebugAntilog
+import io.github.aakira.napier.Napier
 import io.ktor.client.*
 import io.ktor.client.engine.okhttp.*
 import io.ktor.http.*
@@ -17,6 +20,8 @@ import nl.jjkester.multiplatform.server.github.GitHubClient
 import nl.jjkester.multiplatform.server.github.GitHubService
 
 fun main() {
+    Napier.base(DebugAntilog("server"))
+
     val client = HttpClient(OkHttp) {
         install(io.ktor.client.plugins.contentnegotiation.ContentNegotiation) {
             json(Json(DefaultJson) {
