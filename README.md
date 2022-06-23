@@ -12,9 +12,9 @@ Additionally, some data classes are shared between the server and client(s).
 
 **Versions**
 
-- Gradle 6.6.1
-- Kotlin 1.4.0
-- Ktor 1.4.0
+- Gradle 7.4.2
+- Kotlin 1.7.0
+- Ktor 2.0.2
 
 ## Modules
 
